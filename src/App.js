@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
   const [dados, setDados] = useState([]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(data => setDados(data))
+    axios.get('https://jsonplaceholder.typicode.com/users')
+      .then(response => {
+        setDados(response.data);
+      })
       .catch(error => console.error("Erro ao buscar dados:", error));
   }, []);
 
@@ -23,4 +25,5 @@ function App() {
 }
 
 export default App;
+
 
